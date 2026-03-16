@@ -67,3 +67,33 @@ var isPalindrome = function (s) {
 function isAlphaNum(c) {
   return /^[a-z0-9]$/i.test(c);
 }
+
+// Latest solution. I was able to solve this in 3min.
+// We don't need to check left and right index.
+
+
+var isPalindrome = function(s) {
+    let leftIndex = 0;
+    let rightIndex = s.length - 1;
+
+    while(leftIndex < rightIndex) {
+        if (!/[a-zA-Z0-9]/.test(s[leftIndex])) {
+            leftIndex++
+            continue;
+        }
+
+        if (!/[a-zA-Z0-9]/.test(s[rightIndex])) {
+            rightIndex--
+            continue;
+        }
+
+        if (s[leftIndex].toLowerCase() !== s[rightIndex].toLowerCase()) {
+            return false;
+        }
+
+        leftIndex++;
+        rightIndex--;
+    }
+
+    return true;
+};
