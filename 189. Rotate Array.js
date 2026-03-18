@@ -1,6 +1,5 @@
 // Initial pseudo code. I had the right idea coming into it but was not able to come up with a correct solution in time. (over 30min)
 // I had missed the k = k % nums.length part. I did not consider it could overflow twice.
-// This is something I should review back, but essentially they reason why we want to do 
 
 // i - k  = step
 // length of array + step
