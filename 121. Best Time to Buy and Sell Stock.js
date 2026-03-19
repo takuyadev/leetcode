@@ -34,3 +34,31 @@ var maxProfit = function (prices) {
 
     return profit;
 };
+
+// Retry below with new comments, next day refresher. 
+// Basically same solution.
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+
+var maxProfit = function (prices) {
+    let profit = 0;
+    // Find buy price 0 because in loop we skip first index
+    let buyPrice = prices[0];
+
+    // Start at 1. If there's only one price, then profit will always be 0 and this loop will be skipped entirely.
+    for (let i = 1; i < prices.length; i++) {
+        // If buy price is higher than current price
+        // (aka. if stock is at good buying price)
+        if (buyPrice > prices[i]) {
+            buyPrice = prices[i];
+        }
+
+        // Re-calculate highest profit using currentPrice - buyPrice = profit formula
+        profit = Math.max(profit, (prices[i] - buyPrice));
+    }
+
+    return profit;
+};
