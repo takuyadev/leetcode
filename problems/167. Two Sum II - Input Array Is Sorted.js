@@ -42,3 +42,34 @@ var twoSum = function (numbers, target) {
     return [];
 }
 
+// Alternate solution.
+
+/**
+ * @param {number[]} numbers
+ * @param {number} target
+ * @return {number[]}
+ */
+
+var twoSum = function (numbers, target) {
+    let leftIndex = 0;
+    let rightIndex = numbers.length - 1;
+
+    while (leftIndex < rightIndex) {
+        const sum = numbers[leftIndex] + numbers[rightIndex];
+
+        if (target === sum) {
+            return [leftIndex + 1, rightIndex + 1]
+        }
+
+        if (target > sum) {
+            leftIndex++
+        }
+
+        if (target < sum) {
+            rightIndex--
+        }
+    }
+
+    return []
+}
+
