@@ -46,3 +46,33 @@ var minSubArrayLen = function (target, nums) {
     // If minLength is still 0, no valid subarray was ever found.
     return minLength;
 };
+
+// Second time writing solution this time without looking at solution. About 15min.
+// Basically the same as Longest substring, except because we can't predict that the sum is guaranteed to be 7 once indexes roll over
+// we need to loop the left index again to keep searching for another minimum.
+
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function (target, nums) {
+    let minLength = null;
+    let currentSum = nums[0];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    while (rightIndex < nums.length) {
+        while (currentSum >= target) {
+            const currentMinLength = (rightIndex - leftIndex) + 1
+            minLength = minLength ? Math.min(minLength, currentMinLength) : currentMinLength;
+            currentSum -= nums[leftIndex];
+            leftIndex++;
+        }
+
+        rightIndex++;
+        currentSum += nums[rightIndex];
+    }
+
+    return minLength || 0;
+};
