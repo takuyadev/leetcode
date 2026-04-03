@@ -85,8 +85,8 @@ var intToRoman = function (num) {
 };
 
 // Second solution, used one map and one list to iterate. (FYI I asked AI to make variables easier to understand, but the solution is same)
-// Time complexity: O(n)
-// Space complexity: O(n)
+// Time complexity: O(1)
+// Space complexity: O(1)
 
 const INTEGER_TO_ROMAN_MAP = {
   1: "I",
