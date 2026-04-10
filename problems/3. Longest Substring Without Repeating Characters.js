@@ -38,3 +38,22 @@ var lengthOfLongestSubstring = function (s) {
   maxLength = Math.max(maxLength, rightIndex - leftIndex);
   return maxLength;
 };
+
+function lengthOfLongestSubstring(s) {
+  let result = 0;
+  let left = 0;
+  const map = {};
+
+  for (let right = 0; right < s.length; right++) {
+    map[s[right]] = (map[s[right]] ?? 0) + 1;
+
+    while (map[s[right]] >= 2) {
+      map[s[left]]--;
+      left++;
+    }
+
+    result = Math.max(result, right - left + 1);
+  }
+
+  return result;
+}
