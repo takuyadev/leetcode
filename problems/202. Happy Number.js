@@ -34,3 +34,25 @@ var isHappy = function (n) {
 
   return false;
 };
+
+function isHappy(n) {
+  const duplicateMap = {};
+  let num = n;
+
+  while (!duplicateMap[num] || duplicateMap[num] < 2) {
+    num = String(num)
+      .split("")
+      .reduce((acc, curr) => {
+        let squared = Math.pow(Number(curr), 2);
+        acc += squared;
+        return acc;
+      }, 0);
+
+    if (num === 1) {
+      return true;
+    }
+
+    duplicateMap[num] = (duplicateMap[num] ?? 0) + 1;
+  }
+  return false;
+}
