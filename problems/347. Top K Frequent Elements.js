@@ -6,25 +6,24 @@
  * @return {number[]}
  */
 var topKFrequent = function (nums, k) {
-    const map = {};
-    
-    // Count the frequency of each number in the input array.
-    for (let i = 0; i < nums.length; i++) {
-        map[nums[i]] = (map[nums[i]] ?? 0) + 1
-    }
+  const map = {};
 
-    // Get the unique numbers from the input array and sort them based on their frequency in descending order.
-    const numsSet = new Set(nums);
+  // Count the frequency of each number in the input array.
+  for (let i = 0; i < nums.length; i++) {
+    map[nums[i]] = (map[nums[i]] ?? 0) + 1;
+  }
 
-    // Convert the set to an array and sort it based on the frequency of each number in the map.
-    const filteredNums = Array.from(numsSet);
+  // Get the unique numbers from the input array and sort them based on their frequency in descending order.
+  const numsSet = new Set(nums);
 
-    // Sort the unique numbers based on their frequency in the map. We reverse the sorted array to get the most frequent elements first.
-    const sortedNums = filteredNums.sort((a, b) => map[a] - map[b]).reverse();
+  // Convert the set to an array and sort it based on the frequency of each number in the map.
+  const filteredNums = Array.from(numsSet);
 
+  // Sort the unique numbers based on their frequency in the map. We reverse the sorted array to get the most frequent elements first.
+  const sortedNums = filteredNums.sort((a, b) => map[a] - map[b]).reverse();
 
-    // Return the first k elements from the sorted array, which are the k most frequent elements.
-    return sortedNums.slice(0, k);
+  // Return the first k elements from the sorted array, which are the k most frequent elements.
+  return sortedNums.slice(0, k);
 };
 
 // Optimal o(n) solution using bucket sort.
@@ -59,7 +58,6 @@ var topKFrequent = function (nums, k) {
 
   let result = [];
   let breakIndex = 0;
-
 
   // Iterate through the bucket in reverse order to get the most frequent elements first.
   for (let i = bucket.length - 1; i >= 0; i--) {
