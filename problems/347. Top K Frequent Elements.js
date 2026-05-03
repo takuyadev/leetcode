@@ -76,3 +76,62 @@ var topKFrequent = function (nums, k) {
   // In case there are less than k unique elements, we return all the unique elements.
   return result;
 };
+
+// Bucket solution. 
+// Time complexity: O(n)
+// Space complexity: O(n)
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+var topKFrequent = function (nums, k) {
+    const frequent = {};
+
+    // 1. Figure out frequency of each number.
+    for (let i = 0; i < nums.length; i++) {
+        const updatedFrequency = frequent[nums[i]];
+
+        if (typeof updatedFrequency === 'number') {
+            updatedFrequency++;
+        } else {
+            updatedFrequency = 1;
+        }
+    }
+
+    // 2. Create a bucket which index represents the frequency. This will 'sort' which number is most frequent from right to left.
+    const bucket = [];
+
+    for (const num in frequent) {
+        const numberFrequency = frequent[num];
+
+        // 2a. If multiple numbers are in the same frequency range, then add multiple nums on found frequency.
+        if (Array.isArray(bucket[numberFrequency])) {
+            bucket[numberFrequency].push(num)
+        } else {
+            bucket[numberFrequency] = [num];
+        }
+    }
+
+    // 3. Create results by looping backwards in bucket.
+    // 3a. Note the reason why we are looping backwards is that since index represents frequency, very right holds largest frequencies.
+    const results = [];
+
+    for (let i = bucket.length; i > 0; i--) {
+        const currentFrequency = bucket[i];
+
+        // 3b. If found frequency holds values, then push values into results.
+        if (Array.isArray(currentFrequency)) {
+            for (const num of currentFrequency) {
+                results.push(Number(num))
+
+                if (results.length === k) {
+                    return results;
+                }
+            }
+        }
+    }
+
+    return results;
+};
