@@ -17,3 +17,24 @@ var canJump = function (nums) {
   }
   return goal <= 0;
 };
+
+// Solved within 10 minutes, slightly more efficient as it starts from second to last index instead of last index for position.
+
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+
+var canJump = function (nums) {
+  let goal = nums.length - 1;
+
+  for (let position = nums.length - 2; position >= 0; position--) {
+    let maxJump = nums[position] + position;
+
+    if (maxJump >= goal) {
+      goal = position;
+    }
+  }
+
+  return goal <= 0;
+};
