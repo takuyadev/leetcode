@@ -1,12 +1,11 @@
 // Time complexity: O(n) - we need to loop through the string once
 // Space complexity: o(26) or o(52) - depending on the input, we can have at most 26 lowercase letters or 52 if we consider uppercase letters as well
 // Concept: Find a pair, then increment by two. If we have remaining characters, then it means to increment by one for middle character.
-
 /**
  * @param {string} s
  * @return {number}
  */
-var longestPalindrome = function (s) {
+var longestPalindrome = function(s) {
   const pairMap = {};
   let count = 0;
 
