@@ -127,3 +127,27 @@ class Solution {
     return true;
   }
 }
+
+class Solution {
+  /**
+   * @param {TreeNode} p
+   * @param {TreeNode} q
+   * @return {boolean}
+   */
+  isSameTree(p, q) {
+    const isEqual = this.dfs(p, q);
+    return isEqual;
+  }
+
+  dfs(p, q) {
+    if (!p && !q) {
+      return true;
+    }
+
+    if (!p || !q || p.val !== q.val) {
+      return false;
+    }
+
+    return this.dfs(p.left, q.left) && this.dfs(p.right, q.right);
+  }
+}
